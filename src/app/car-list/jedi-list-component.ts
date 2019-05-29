@@ -3,20 +3,20 @@ import { JediService } from '../shared/jedi/jedi.service';
 import { GiphyService } from '../shared/giphy/giphy.service';
 
 @Component({
-  selector: 'app-car-list',
-  templateUrl: './car-list.component.html',
-  styleUrls: ['./car-list.component.css']
+  selector: 'app-jedi-list',
+  templateUrl: './jedi-list.component.html',
+  styleUrls: ['./jedi-list.component.css']
 })
 export class JediListComponent implements OnInit {
-  cars: Array<any>;
+  jedis: Array<any>;
 
-  constructor(private carService: JediService, private giphyService: GiphyService) { }
+  constructor(private jediService: JediService, private giphyService: GiphyService) { }
 
   ngOnInit() {
-    this.carService.getAll().subscribe(data => {
-      this.cars = data;
-      for (const car of this.cars) {
-        this.giphyService.get(car.name).subscribe(url => car.giphyUrl = url);
+    this.jediService.getAll().subscribe(data => {
+      this.jedis = data;
+      for (const jedi of this.jedis) {
+        this.giphyService.get(jedi.name).subscribe(url => jedi.giphyUrl = url);
       }
     });
   }

@@ -15,8 +15,8 @@ export class JediListComponent implements OnInit {
   ngOnInit() {
     this.jediService.getAll().subscribe(data => {
       this.jedis = data;
-      for (const car of this.jedis) {
-        this.giphyService.get(car.name).subscribe(url => car.giphyUrl = url);
+      for (const jedi of this.jedis) {
+        this.giphyService.get(jedi.name).subscribe(url => jedi.giphyUrl = url);
       }
     });
   }

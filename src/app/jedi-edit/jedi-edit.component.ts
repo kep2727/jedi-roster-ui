@@ -11,7 +11,7 @@ import { GiphyService } from '../shared/giphy/giphy.service';
   styleUrls: ['./jedi-edit.component.css']
 })
 export class JediEditComponent implements OnInit, OnDestroy {
-  car: any = {};
+  jedi: any = {};
 
   sub: Subscription;
 
@@ -25,11 +25,11 @@ export class JediEditComponent implements OnInit, OnDestroy {
     this.sub = this.route.params.subscribe(params => {
       const id = params['id'];
       if (id) {
-        this.jediService.get(id).subscribe((car: any) => {
-          if (car) {
-            this.car = car;
-            this.car.href = car._links.self.href;
-            this.giphyService.get(car.name).subscribe(url => car.giphyUrl = url);
+        this.jediService.get(id).subscribe((jedi: any) => {
+          if (jedi) {
+            this.jedi = jedi;
+            this.jedi.href = jedi._links.self.href;
+            this.giphyService.get(jedi.name).subscribe(url => jedi.giphyUrl = url);
           } else {
             console.log(`Jedi with id '${id}' not found, returning to list`);
             this.gotoList();
